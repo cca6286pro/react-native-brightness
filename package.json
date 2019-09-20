@@ -1,7 +1,7 @@
 {
   "name": "react-native-brightness",
   "title": "React Native Brightness",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "React Native bridge controls device screen brightness",
   "main": "index.js",
   "scripts": {
