@@ -10,6 +10,16 @@
 
 RCT_EXPORT_MODULE()
 
+RCT_EXPORT_METHOD(hasPermission:(RCTPromiseResolveBlock)resolve
+                  hasPermissionRejector:(RCTPromiseRejectBlock)reject) {
+    resolve(@(true));
+}
+RCT_EXPORT_METHOD(requestPermission:(RCTPromiseResolveBlock)resolve
+                  requestPermissionRejector:(RCTPromiseRejectBlock)reject)
+{
+    resolve(@(true));
+}
+
 RCT_EXPORT_METHOD(getBrightness:(RCTPromiseResolveBlock)resolve
                   getScreenBrightnessRejector:(RCTPromiseRejectBlock)reject) {
 

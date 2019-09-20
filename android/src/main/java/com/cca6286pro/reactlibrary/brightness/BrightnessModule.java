@@ -3,11 +3,9 @@ package com.cca6286pro.reactlibrary.brightness;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
-import android.support.v4.content.ContextCompat;
 import android.view.WindowManager;
 
 import com.facebook.react.bridge.ActivityEventListener;
@@ -23,7 +21,7 @@ public class BrightnessModule extends ReactContextBaseJavaModule implements Acti
     /**
      * The name of the module for the JS context to reference.
      */
-    public static final String MODULE_NAME = "ScreenBrightness";
+    public static final String MODULE_NAME = "Brightness";
 
     private static final String PERMISSION_EVENT_NAME = "screenBrightnessPermission";
     private static final int BRIGHTNESS_MAX = 255;
@@ -31,12 +29,12 @@ public class BrightnessModule extends ReactContextBaseJavaModule implements Acti
     private static final int writeSettingsRequestCode = 4411;
 
     /**
-    * Constructor
-    *
-    * @param reactApplicationContext The application context provided by the ReactPackage.
-    */
-    public BrightnessModule(
-        ReactApplicationContext reactApplicationContext) {
+     * Constructor
+     *
+     * @param reactApplicationContext The application context provided by the
+     *                                ReactPackage.
+     */
+    public BrightnessModule(ReactApplicationContext reactApplicationContext) {
         super(reactApplicationContext);
         reactApplicationContext.addActivityEventListener(this);
     }
@@ -112,13 +110,19 @@ public class BrightnessModule extends ReactContextBaseJavaModule implements Acti
      *
      * @return The brightness level.
      */
-    private Integer getSystemBrightness() {
-        Integer brightness;
+    private Float getSystemBrightness() {
+        Float brightness = null;
+        Integer sysBrightness;
         try {
-            brightness = Settings.System.getInt(getReactApplicationContext().getContentResolver(),
+            sysBrightness = Settings.System.getInt(getReactApplicationContext().getContentResolver(),
                     Settings.System.SCREEN_BRIGHTNESS);
         } catch (Settings.SettingNotFoundException e) {
-            brightness = null;
+            sysBrightness = null;
+        }
+        if (sysBrightness != null && sysBrightness > 1) {
+            brightness = (float)sysBrightness/(float)BRIGHTNESS_MAX;
+        } else {
+            brightness = (float)sysBrightness;
         }
         return brightness;
     }
@@ -159,8 +163,9 @@ public class BrightnessModule extends ReactContextBaseJavaModule implements Acti
      * context.
      */
     @ReactMethod
-    public void requestPermission() {
+    public void requestPermission(final Promise promise) {
         requestSettingsPermission();
+        promise.resolve(true);
     }
 
     /**
