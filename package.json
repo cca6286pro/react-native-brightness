@@ -1,0 +1,33 @@
+{
+  "name": "react-native-brightness",
+  "title": "React Native Brightness",
+  "version": "1.0.0",
+  "description": "TODO",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cca6286pro/react-native-brightness.git",
+    "baseUrl": "https://github.com/cca6286pro/react-native-brightness"
+  },
+  "keywords": [
+    "react-native"
+  ],
+  "author": {
+    "name": "cca6286pro",
+    "email": "cca6286pro@email.com"
+  },
+  "license": "MIT",
+  "licenseFilename": "LICENSE",
+  "readmeFilename": "README.md",
+  "peerDependencies": {
+    "react": "^16.8.1",
+    "react-native": ">=0.59.0-rc.0 <1.0.x"
+  },
+  "devDependencies": {
+    "react": "^16.8.3",
+    "react-native": "^0.59.10"
+  }
+}
