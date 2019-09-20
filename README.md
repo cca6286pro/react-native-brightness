@@ -39,6 +39,9 @@
 ```javascript
 import Brightness from "react-native-brightness";
 
-// TODO: What to do with the module?
-Brightness;
+Brightness.getBrightness((brightnessLevel) => {
+  // brightnessLevel is a float (0 - 1)
+});
+
+Brightness.setBrightness(0.7);
 ```
